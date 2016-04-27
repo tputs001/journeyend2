@@ -4,8 +4,6 @@ app.config(['$routeProvider', function($routeProvider){
   $routeProvider
   .when("/", {
     templateUrl: "home/home.view.html"
-    // controller: "homeController",
-    // controllerAs: "home"
   })
   .when("/search", {
     templateUrl: "search/search.view.html",
@@ -15,8 +13,8 @@ app.config(['$routeProvider', function($routeProvider){
 }]);
 
 
-// app.controller('navigationController', navigation);
-//
-// function navigation(){
-//   var vm = this;
-// }
+app.controller('navigationController', navigation);
+
+function navigation(){
+  var vm = this;
+}

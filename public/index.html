@@ -10,38 +10,39 @@
     <link href="./default.css" rel="stylesheet">
   </head>
   <body ng-app="journeysend">
-    <nav class="navbar navbar-default navbar-fixed-top">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="/#/">Journey's End</a>
+    <div ng-controller = "navigationController as navigation">
+      <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/#/">Journey's End</a>
+          </div>
+          <div id="navbar" class="navbar-collapse collapse">
+            <form ng-controller="searchController as search" class="navbar-form" style="display: inline-block;">
+              <input ng-model="navigation.term" type="text" class="form-control">
+              <a href="/#/search?q={{navigation.term}}"><button type="button" class="btn btn-success">Search</button></a>
+            </form>
+            <ul class="nav navbar-nav">
+              <li class="active"><a href="#">About</a></li>
+              <li><a href="#">Explore</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+              <li>
+                <a href="/#/" role="button">Login</a>
+              </li>
+              <li>
+                <a href="/#/" role="button">Sign Up</a>
+              </li>
+            </ul>
+          </div>
         </div>
-        <div id="navbar" class="navbar-collapse collapse">
-          <form ng-controller="searchController as search" class="navbar-form" style="display: inline-block;">
-            <input ng-model="search.text" type="text" class="form-control">
-            <a href="/#/search"><button ng-click="search.submit(search.text)" type="submit" class="btn btn-success">Search</button></a>
-            {{search.list}}
-          </form>
-          <ul class="nav navbar-nav">
-            <li class="active"><a href="#">About</a></li>
-            <li><a href="#">Explore</a></li>
-          </ul>
-          <ul class="nav navbar-nav navbar-right">
-            <li>
-              <a href="/#/" role="button">Login</a>
-            </li>
-            <li>
-              <a href="/#/" role="button">Sign Up</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
+      </nav>
+    </div>
     <div ng-view></div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
