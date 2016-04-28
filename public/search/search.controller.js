@@ -5,8 +5,6 @@ app.$inject = ['$http', '$location'];
 function search($http, $location){
   var vm = this;
   var term = ($location.search())
-  // console.log($location.search())
-
   var results = function(query){
     var querySearch = $http({
       method: 'GET',
@@ -14,8 +12,10 @@ function search($http, $location){
     })
     querySearch.then(function(response){
       // console.log(response)
-      vm.list = response.data
+      // vm.list = response.data.activities.length
+      vm.activities = response.data.activities
     })
   }
+  // results(term.q)
   results(term.q)
 }
