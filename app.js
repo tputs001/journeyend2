@@ -45,5 +45,5 @@ app.get('/search/:query', function(req, res){
       }
     })
   })
-
+})
 var server = app.listen(1337, function(){console.log("listening to 1337")})
