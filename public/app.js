@@ -1,4 +1,4 @@
-var app = angular.module('journeysend', ['ngRoute']);
+var app = angular.module('suggest', ['ngRoute', 'ui.bootstrap']);
 
 app.config(['$routeProvider', function($routeProvider){
   $routeProvider
@@ -11,7 +11,6 @@ app.config(['$routeProvider', function($routeProvider){
     controllerAs: "search"
   })
 }]);
-
 
 app.controller('navigationController', navigation);
 

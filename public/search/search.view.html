@@ -5,7 +5,7 @@
         <div class="panel-heading">
           <h3 class="panel-title">Search Results</h3>
         </div>
-        <div ng-repeat="item in search.activities" class="panel-body">
+        <div ng-repeat="item in search.filteredActivities" class="panel-body">
           <div class="media" style="height: 200px;">
             <div class="media-left media-middle">
               <a href="#">
@@ -20,6 +20,8 @@
             </div>
           </div>
         </div>
+        <pagination ng-model="currentPage" total-items="search.activities.length" max-size="maxSize" boundary-links="true">
+        </pagination>
       </div>
     </div>
     <div class="col-md-4">
