@@ -24,11 +24,13 @@ app.get('/search/:query', function(req, res){
           var titleArray =[]
           var bodyParsed = JSON.parse(body)
           for(var i =0; i<bodyParsed.activities.length; i++){
+            var num = (bodyParsed.activities[i].fromPrice)
+            var cost = parseInt(num.slice(1, num.length))
             titleArray.push({
               title : bodyParsed.activities[i].title,
               id : bodyParsed.activities[i].id,
               url : bodyParsed.activities[i].imageUrl,
-              price : bodyParsed.activities[i].fromPrice,
+              price : cost,
               categories : bodyParsed.activities[i].categories,
               latlng : bodyParsed.activities[i].latLng
             })

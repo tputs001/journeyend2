@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Journey's End</title>
+    <title>Suggest Me</title>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
     <link href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css" rel="stylesheet">
@@ -24,7 +24,7 @@
           </div>
           <div id="navbar" class="navbar-collapse collapse">
             <form ng-controller="searchController as search" class="navbar-form" style="display: inline-block;">
-              <input ng-model="navigation.term" type="text" class="form-control">
+              <input ng-model="navigation.term" type="text" class="form-control" placeholder="Los Angeles">
               <a href="/#/search?q={{navigation.term}}"><button type="button" class="btn btn-success">Search</button></a>
             </form>
             <ul class="nav navbar-nav">
@@ -49,6 +49,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
     <script data-require="ui-bootstrap@*" data-semver="0.12.1" src="http://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.12.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.9/angular-route.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
     <script src="app.js"></script>
     <script src="search/search.controller.js"></script>
   </body>
