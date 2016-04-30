@@ -2,8 +2,9 @@ var express = require('express');
 var bodyParser =require('body-parser').json()
 var mongo = require('mongodb')
 var request = require('request');
+var yelp = require('./public/yelp');
 var myClient = mongo.MongoClient;
-var url = 'mongodb://localhost/journeysend'
+var url = 'mongodb://localhost/suggest'
 var app = express();
 
 app.use(express.static('./public'))
@@ -37,7 +38,7 @@ app.get('/search/:query', function(req, res){
           }
           data.insert({
             location : location,
-            activities : titleArray
+            tours : titleArray
           }, function(error, results){
             res.send(titleArray)
           })
@@ -45,6 +46,45 @@ app.get('/search/:query', function(req, res){
       } else {
         res.send(results)
       }
+    })
+  })
+})
+
+app.get('/hikes/:query/', function(req, res){
+  var term = "hiking"
+  var location = req.params.query
+  var results = yelp.yelpSearch(term, location)
+  results.then(function(data){
+    var hiking = []
+    for(var i = 0; i<data.businesses.length; i++){
+      var img_url = data.businesses[i].image_url
+      var newUrl = img_url.slice(0, img_url.indexOf('/ms')) + '/o.jpg'
+      console.log(newUrl)
+      hiking.push({
+        title : data.businesses[i].name,
+        id : data.businesses[i].id,
+        url : newUrl,
+        price : 0,
+        categories : data.businesses[i].categories,
+        latlng : data.businesses[i].location.cordinate,
+        location : data.businesses[i].location,
+        rating : data.businesses[i].rating,
+        phone : data.businesses[i].phone
+      })
+    }
+
+    myClient.connect(url, function(err, db){
+      var database = db.collection('activities')
+      database.update(
+        {'location' : location},
+        { $set:
+          {
+            "hiking" : hiking
+          }
+        }, function(error, results){
+          res.send(hiking)
+        }
+      )
     })
   })
 })

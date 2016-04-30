@@ -10,7 +10,7 @@ function search($scope, $http, $location){
   var allResults = function(query){
     var allSearch = getResults(query)
     allSearch.then(function(response){
-      vm.filteredActivities = response.data.activities
+      vm.filteredActivities = response.data.tours
     })
   }
 
@@ -20,6 +20,19 @@ function search($scope, $http, $location){
       url: 'http://localhost:1337/search/' + query
     })
     return querySearch
+  }
+
+
+  vm.hikes = function(query){
+    var querySearch = $http({
+      method: 'GET',
+      url: 'http://localhost:1337/hikes/' + query
+    })
+
+    querySearch.then(function(response){
+      console.log(response)
+      vm.filteredActivities = response.data
+    })
   }
 
   vm.filter = function(query, amt){

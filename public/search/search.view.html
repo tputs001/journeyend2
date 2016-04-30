@@ -9,6 +9,9 @@
           <div class="col-md-2">
             <button class="btn btn-default" ng-click="search.filter(query, 20)"> Less than $20</button>
           </div>
+          <div class="col-md-2">
+            <button class="btn btn-default" ng-click="search.hikes(query)">Hiking</button>
+          </div>
         </div>
       </div>
     </div>
@@ -23,8 +26,8 @@
           <div ng-repeat="item in search.filteredActivities">
           <div class="col-md-3 results">
             <div class="panel panel-default">
-              <div class="panel-heading">
-                <img class="img-responsive" src={{item.url}}>
+              <div class="panel">
+                <img class="img-responsive imageResult" src={{item.url}}>
               </div>
               <div class="panel-body results-body">
                 <h5>{{item.title}}</h5>
@@ -39,11 +42,3 @@
     </div>
   </div>
 </div>
-
-https://api.transitandtrails.org/api/v1/trailheads.json?key=e8b828a9ff784571f4f641c9e3ce4abefd95e7d37475543c240f2ed75bf29a73&latitude=34.0522&longitude=118.2437&distance=50
-
-https://api.transitandtrails.org/api/v1/trailheads.json?key=e8b828a9ff784571f4f641c9e3ce4abefd95e7d37475543c240f2ed75bf29a73
-
-34.0522 118.2437
-
-e8b828a9ff784571f4f641c9e3ce4abefd95e7d37475543c240f2ed75bf29a73

@@ -3,6 +3,11 @@ body {
   padding-top: 50px;
 }
 
+.imageResult {
+  width: 252px;
+  height: 150px;
+}
+
 .results {
   height: 300px;
 }
