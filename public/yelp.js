@@ -20,5 +20,4 @@ function yelpSearch(term, location){
   })
 }
 
-
 module.exports.yelpSearch = yelpSearch

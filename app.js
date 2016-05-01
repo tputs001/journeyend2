@@ -88,4 +88,41 @@ app.get('/hikes/:query/', function(req, res){
     })
   })
 })
+
+app.get('/restaurant/:query', function(req, res){
+  var location = req.params.query
+  var term = "restaurants"
+  var results = yelp.yelpSearch(term, location)
+  results.then(function(data){
+    var restaurants = []
+    for(var i = 0; i<data.businesses.length; i++){
+      var img_url = data.businesses[i].image_url
+      var newUrl = img_url.slice(0, img_url.indexOf('/ms')) + '/o.jpg'
+      restaurants.push({
+        title : data.businesses[i].name,
+        id : data.businesses[i].id,
+        url : newUrl,
+        price : data.businesses[i].price,
+        categories : data.businesses[i].categories,
+        latlng : data.businesses[i].location.cordinate,
+        location : data.businesses[i].location,
+        rating : data.businesses[i].rating,
+        phone : data.businesses[i].phone
+      })
+    }
+    myClient.connect(url, function(err, db){
+      var database = db.collection('activities')
+      database.update(
+        {'location' : location},
+        { $set:
+          {
+            "restaurant" : restaurants
+          }
+        }, function(error, results){
+          res.send(restaurants)
+        }
+      )
+    })
+  })
+})
 var server = app.listen(1337, function(){console.log("listening to 1337")})
