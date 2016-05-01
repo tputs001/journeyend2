@@ -11,8 +11,6 @@ var yelp = new Yelp({
 })
 
 function yelpSearch(term, location){
-  console.log(term)
-  console.log(location)
   return yelp.search({
     location: location,
     sort: 2,

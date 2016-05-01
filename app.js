@@ -68,12 +68,20 @@ app.get('/restaurant/:query', function(req, res){
   })
 })
 
+app.get('/museums/:query', function(req, res){
+  var location = req.params.query
+  var term = "museums"
+  var results = yelp.yelpSearch(term, location)
+  results.then(function(data){
+    insert(data, location, "museums", res)
+  })
+})
+
 function insert(data, location, activity, res){
   var activityArray = []
   for(var i = 0; i<data.businesses.length; i++){
     var img_url = data.businesses[i].image_url
     var newUrl = img_url.slice(0, img_url.indexOf('/ms')) + '/o.jpg'
-    console.log(newUrl)
     activityArray.push({
       title : data.businesses[i].name,
       id : data.businesses[i].id,

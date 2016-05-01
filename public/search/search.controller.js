@@ -39,7 +39,16 @@ function search($scope, $http, $location){
       url: 'http://localhost:1337/restaurant/' + query
     })
     querySearch.then(function(response){
-      console.log(response)
+      vm.filteredActivities = response.data
+    })
+  }
+
+  vm.museums = function(query){
+    var querySearch = $http({
+      method: 'GET',
+      url: 'http://localhost:1337/museums/' + query
+    })
+    querySearch.then(function(response){
       vm.filteredActivities = response.data
     })
   }
