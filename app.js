@@ -68,6 +68,15 @@ app.get('/restaurant/:query', function(req, res){
   })
 })
 
+app.get('/nightlife/:query', function(req, res){
+  var location = req.params.query
+  var term = "nightlife"
+  var results = yelp.yelpSearch(term, location)
+  results.then(function(data){
+    insert(data, location, "nightlife", res)
+  })
+})
+
 app.get('/museums/:query', function(req, res){
   var location = req.params.query
   var term = "museums"

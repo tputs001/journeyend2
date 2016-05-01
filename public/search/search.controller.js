@@ -53,6 +53,16 @@ function search($scope, $http, $location){
     })
   }
 
+  vm.nightlife = function(query){
+    var querySearch = $http({
+      method: 'GET',
+      url: 'http://localhost:1337/nightlife/' + query
+    })
+    querySearch.then(function(response){
+      vm.filteredActivities = response.data
+    })
+  }
+
   vm.filter = function(query, amt){
     var filtered = getResults(query)
     filtered.then(function(response){
