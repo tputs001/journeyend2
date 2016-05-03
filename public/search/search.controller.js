@@ -10,7 +10,7 @@ function search($scope, $http, $location){
   var allResults = function(query){
     var allSearch = getResults(query)
     allSearch.then(function(response){
-      vm.filteredActivities = response.data.tours
+      vm.filteredActivities = budgetFilter(queryString.b, response.data.tours)
     })
   }
 
@@ -22,6 +22,16 @@ function search($scope, $http, $location){
     return querySearch
   }
 
+  var budgetFilter = function(budget, data){
+    var budgetData = []
+    for(var i = 0; i<data.length; i++){
+      if(data[i].price < budget || data[i].price == 'Not Available'){
+        budgetData.push(data[i])
+      }
+    }
+    return budgetData;
+  }
+
 
   vm.hikes = function(query){
     var querySearch = $http({
@@ -29,7 +39,7 @@ function search($scope, $http, $location){
       url: './hikes/' + query
     })
     querySearch.then(function(response){
-      vm.filteredActivities = response.data
+      vm.filteredActivities = budgetFilter(queryString.b, response.data)
     })
   }
 
@@ -39,7 +49,7 @@ function search($scope, $http, $location){
       url: './restaurant/' + query
     })
     querySearch.then(function(response){
-      vm.filteredActivities = response.data
+      vm.filteredActivities = budgetFilter(queryString.b, response.data)
     })
   }
 
@@ -49,7 +59,7 @@ function search($scope, $http, $location){
       url: './museums/' + query
     })
     querySearch.then(function(response){
-      vm.filteredActivities = response.data
+      vm.filteredActivities = budgetFilter(queryString.b, response.data)
     })
   }
 
@@ -59,7 +69,7 @@ function search($scope, $http, $location){
       url: './nightlife/' + query
     })
     querySearch.then(function(response){
-      vm.filteredActivities = response.data
+      vm.filteredActivities = budgetFilter(queryString.b, response.data)
     })
   }
 
