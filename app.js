@@ -138,4 +138,5 @@ function getData(location, res, terms, activityArray){
   })
 }
 
-var server = app.listen(1337, function(){console.log("listening to 1337")})
+var port = process.env.PORT || 1337;
+app.listen(port, function(){ console.log("Listening on port " + port)})
