@@ -3,8 +3,8 @@
         <div class="row hero-header">
           <div id="navi">
             <ul class="nav navbar-nav">
-              <li><a href="#">About</a></li>
-              <li><a href="#">Explore</a></li>
+              <!-- <li><a href="#">About</a></li>
+              <li><a href="#">Explore</a></li> -->
             </ul>
           </div>
           <div class="col-md-4 col-md-offset-7">
@@ -20,9 +20,9 @@
                     </div>
                     <div class="form-group text-center">
                       <label>What's your budget?</label>
-                      <input ng-model="blah" type="text" class="form-control text-center" placeholder="$100">
+                      <input ng-model="navigation.budget" type="text" class="form-control text-center" placeholder="$100">
                     </div>
-                    <a href="/#/search?q={{navigation.term}}"><button type="button" class="btn btn-success center-block">Search</button></a>
+                    <a href="/#/search?q={{navigation.term}}&b={{navigation.budget}}"><button type="button" class="btn btn-success center-block">Search</button></a>
                   </form>
                 </div>
               </div>
