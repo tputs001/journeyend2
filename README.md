@@ -2,6 +2,8 @@
 
 A full stack web application using Mongo, Express, Angular and Node to suggest users things to do based on the location, budget, and personal interest.
 
+[Live Demo](http://suggest-me.herokuapp.com/)
+
 ##Functionality includes:
 1. Users can search tours, hikes, restaurants, museums, and night light activities.
 2. Users can limit their search based on their location.
