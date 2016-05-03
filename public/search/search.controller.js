@@ -17,7 +17,7 @@ function search($scope, $http, $location){
   var getResults = function(query){
     var querySearch = $http({
       method: 'GET',
-      url: 'http://localhost:1337/search/' + query
+      url: './search/' + query
     })
     return querySearch
   }
@@ -26,7 +26,7 @@ function search($scope, $http, $location){
   vm.hikes = function(query){
     var querySearch = $http({
       method: 'GET',
-      url: 'http://localhost:1337/hikes/' + query
+      url: './hikes/' + query
     })
     querySearch.then(function(response){
       vm.filteredActivities = response.data
@@ -36,7 +36,7 @@ function search($scope, $http, $location){
   vm.restaurant = function(query){
     var querySearch = $http({
       method: 'GET',
-      url: 'http://localhost:1337/restaurant/' + query
+      url: './restaurant/' + query
     })
     querySearch.then(function(response){
       vm.filteredActivities = response.data
@@ -46,7 +46,7 @@ function search($scope, $http, $location){
   vm.museums = function(query){
     var querySearch = $http({
       method: 'GET',
-      url: 'http://localhost:1337/museums/' + query
+      url: './museums/' + query
     })
     querySearch.then(function(response){
       vm.filteredActivities = response.data
@@ -56,7 +56,7 @@ function search($scope, $http, $location){
   vm.nightlife = function(query){
     var querySearch = $http({
       method: 'GET',
-      url: 'http://localhost:1337/nightlife/' + query
+      url: './nightlife/' + query
     })
     querySearch.then(function(response){
       vm.filteredActivities = response.data
