@@ -5,7 +5,7 @@ var request = require('request');
 var yelp = require('./public/yelp');
 var scraper = require('./public/scraper')
 var myClient = mongo.MongoClient;
-var url = 'mongodb://localhost/suggest'
+var url = process.env.MONGODB_URI ==  undefined ? 'mongodb://localhost/suggest' : process.env.MONGODB_URI
 var app = express();
 
 app.use(express.static('./public'))

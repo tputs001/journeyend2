@@ -2,7 +2,7 @@ var request = require('request');
 var cheerio = require('cheerio');
 var mongo = require('mongodb')
 var myClient = mongo.MongoClient;
-var mongoUrl = 'mongodb://localhost/suggest'
+var mongoUrl = process.env.MONGODB_URI ==  undefined ? 'mongodb://localhost/suggest' : process.env.MONGODB_URI
 
 function scrape(url, location, name, activity){
   var yelp = url

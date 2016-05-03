@@ -1,7 +1,7 @@
 var Yelp = require('yelp');
 var mongo = require('mongodb');
 var myClient = mongo.MongoClient;
-var url = 'mongodb://localhost/suggest';
+var url = process.env.MONGODB_URI ==  undefined ? 'mongodb://localhost/suggest' : process.env.MONGODB_URI
 
 var yelp = new Yelp({
   consumer_key: 'iVRaq62BNmKycl-Oayfqfw',
