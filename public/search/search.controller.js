@@ -10,7 +10,7 @@ function search($scope, $http, $location){
   var allResults = function(query){
     var allSearch = getResults(query)
     allSearch.then(function(response){
-      vm.filteredActivities = budgetFilter(queryString.b, response.data.tours)
+      budgetFilter(response.data.tours)
     })
   }
 
@@ -22,16 +22,9 @@ function search($scope, $http, $location){
     return querySearch
   }
 
-  var budgetFilter = function(budget, data){
-    var budgetData = []
-    for(var i = 0; i<data.length; i++){
-      if(data[i].price < budget || data[i].price == 'Not Available'){
-        budgetData.push(data[i])
-      }
-    }
-    return budgetData;
+  var budgetFilter = function(data){
+    vm.filteredActivities = _.filter(data, function(num){return num.price < queryString.b || num.price == 'Not Available'})
   }
-
 
   vm.hikes = function(query){
     var querySearch = $http({
@@ -39,7 +32,7 @@ function search($scope, $http, $location){
       url: './hikes/' + query
     })
     querySearch.then(function(response){
-      vm.filteredActivities = budgetFilter(queryString.b, response.data)
+    budgetFilter(response.data)
     })
   }
 
@@ -49,7 +42,7 @@ function search($scope, $http, $location){
       url: './restaurant/' + query
     })
     querySearch.then(function(response){
-      vm.filteredActivities = budgetFilter(queryString.b, response.data)
+      budgetFilter(response.data)
     })
   }
 
@@ -59,7 +52,7 @@ function search($scope, $http, $location){
       url: './museums/' + query
     })
     querySearch.then(function(response){
-      vm.filteredActivities = budgetFilter(queryString.b, response.data)
+      budgetFilter(response.data)
     })
   }
 
@@ -69,7 +62,27 @@ function search($scope, $http, $location){
       url: './nightlife/' + query
     })
     querySearch.then(function(response){
-      vm.filteredActivities = budgetFilter(queryString.b, response.data)
+      budgetFilter(response.data)
+    })
+  }
+
+  vm.itinerary = function(query){
+    var querySearch = $http({
+      method: 'GET',
+      url: './itinerary/' + query
+    })
+    querySearch.then(function(response){
+      var random = Math.floor(Math.random() * 15)
+      var data = response.data
+      var itineraryObject = {
+        morningFood: response.data.restaurants[random],
+        morningActivity: response.data.hiking[random],
+        eveningFood: response.data.restaurants[random + 1],
+        eveningActivity: [response.data.tours[random + 1], response.data.tours[random + 2], response.data.tours[random + 3]],
+        nightFood: response.data.restaurants[random + 2],
+        nightActivity: response.data.nightlife[random + 2]
+      }
+      vm.itinerary = itineraryObject
     })
   }
 

@@ -66,6 +66,7 @@ app.get('/restaurant/:query', function(req, res){
   var term = "restaurants"
     var results = yelp.yelpSearch(term, location)
     results.then(function(data){
+      console.log(data)
       var activityArray = insert(data, location, "restaurants", res)
       getData(location, res, term, activityArray)
     })
@@ -91,16 +92,22 @@ app.get('/museums/:query', function(req, res){
   })
 })
 
+app.get('/itinerary/:query', function(req, res){
+  var location = req.params.query
+  myClient.connect(url, function(err, db){
+    var database = db.collection('activities')
+    database.findOne({location: location}, function(error, results){
+      res.send(results)
+    })
+  })
+})
+
 function insert(data, location, activity, res){
   var activityArray = []
   for(var i = 0; i<data.businesses.length; i++){
     var img_url = data.businesses[i].image_url
     var newUrl;
-    if(img_url == undefined){
-      newUrl = "Not Available"
-    } else {
-      newUrl = img_url.slice(0, img_url.indexOf('/ms')) + '/o.jpg'
-    }
+    img_url == undefined ? newUrl = "Not Available" : newUrl = img_url.slice(0, img_url.indexOf('/ms')) + '/o.jpg'
     activityArray.push({
       title : data.businesses[i].name,
       id : data.businesses[i].id,
@@ -110,6 +117,8 @@ function insert(data, location, activity, res){
       latlng : data.businesses[i].location.cordinate,
       location : data.businesses[i].location,
       rating : data.businesses[i].rating,
+      review: data.businesses[i].review_count,
+      snippet: data.businesses[i].snippet_text,
       phone : data.businesses[i].phone
     })
   }

@@ -31,12 +31,6 @@ body {
   color: white;
 }
 
-#navi {
-  position: relative;
-  /*top: -150px;
-  left: 80%;*/
-}
-
 .search {
   box-shadow: 0 0 30px black;
   height: 400px;
@@ -45,4 +39,19 @@ body {
 
 .search > div > h3 {
   font-family: Arial;
+}
+
+#search-title  > h3{
+  display: inline;
+}
+
+
+#search-title > a {
+  float:right;
+  cursor: pointer;
+}
+
+.media-img {
+  width: 100px;
+  height: 100px;
 }
