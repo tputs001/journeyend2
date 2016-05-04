@@ -49,73 +49,7 @@
             </div>
           </div>
         </div>
-        <div ng-show="start">
-          <div class="row">
-            <div class="col-md-7 col-md-offset-1">
-              <h4 class="text-center"> Morning </h4>
-              <hr>
-              <div class="media">
-                <a class="media-left" href="#">
-                  <img class="media-object media-img img-circle" src="{{search.itinerary.morningFood.url}}" alt="Generic placeholder image">
-                </a>
-                <div class="media-body">
-                  <h4 class="media-heading">Let's start...</h4>
-                  Lets start the day by heading over for some grub at <strong><em>{{search.itinerary.morningFood.title}}</em></strong>.  This restaurant has a <strong><em>{{search.itinerary.morningFood.rating}}</em></strong> rating and over <strong><em>{{search.itinerary.morningFood.review}}</em></strong> reviews. The food falls under the category of <strong><em>{{search.itinerary.morningFood.categories[0][0]}}</em></strong> and the price averages about <strong><em>${{search.itinerary.morningFood.price}}</em></strong> dollars.
-                </div>
-              </div>
-              <div class="media">
-                <a class="media-left" href="#">
-                  <img class="media-object media-img img-circle" src="{{search.itinerary.morningActivity.url}}" alt="Generic placeholder image">
-                </a>
-                <div class="media-body">
-                  <h4 class="media-heading">Great! Now It's time to head over..</h4>
-                  and get our hearts pumping! <strong><em>{{search.itinerary.morningActivity.title}}</em></strong>. The best thing about this is that it is free! This activity comes highly <strong><em>{{search.itinerary.morningActivity.rating}}</em></strong> rating with an awesome <strong><em>{{search.itinerary.morningActivity.review}}</em></strong> reviews such as
-                  <blockquote>
-                  "<em>{{search.itinerary.morningActivity.snippet}}</em>"
-                  </blockquote>
-                </div>
-              </div>
-              <h4 class="text-center"> Evening </h4>
-              <hr>
-              <div class="media">
-                <div class="media-body">
-                  <h3 style="display: inline;" class="media-heading text-right">Are you hungry yet?</h3>
-                  We recommend heading over to  <strong><em>{{search.itinerary.eveningFood.title}}</em></strong>.  This restaurant is one of {{query}}'s' hidden gem. With a rating of <strong><em>{{search.itinerary.eveningFood.rating}}</em></strong> stars and over <strong><em>{{search.itinerary.eveningFood.review}}</em></strong> reviews, you can't go wrong with this place.. average cost is around <strong><em>${{search.itinerary.eveningFood.price}}</em></strong> dollars.
-                  <blockquote>
-                  "<em>{{search.itinerary.eveningFood.snippet}}</em>"
-                  </blockquote>
-                </div>
-              <a class="media-right" href="#">
-                <img class="media-object media-img img-circle" src="{{search.itinerary.eveningFood.url}}" alt="Generic placeholder image">
-              </a>
-              <h4 class="media-heading">Lets go do some touristy things.  You can pick, here we recommend three:</h4>
-                <div class="col-md-10">
-                    <li>1. {{search.itinerary.eveningActivity[0].title}} | <strong>Tickets/Costs: ${{search.itinerary.eveningActivity[0].price}} dollars.</strong></li>
-                    <li>2. {{search.itinerary.eveningActivity[1].title}} | <strong>Tickets/Costs: ${{search.itinerary.eveningActivity[1].price}} dollars.</strong></li>
-                    <li>3. {{search.itinerary.eveningActivity[2].title}} | <strong>Tickets/Costs: ${{search.itinerary.eveningActivity[2].price}} dollars.</strong></li>
-                </div>
-              </div>
-              <h4 class="text-center"> Night </h4>
-              <hr>
-              <div class="media">
-                <a class="media-left" href="#">
-                  <img class="media-object media-img img-circle" src="{{search.itinerary.nightFood.url}}" alt="Generic placeholder image">
-                </a>
-                <div class="media-body">
-                  <h4 class="media-heading">Let's finish the Night with a fantastic restaurant..</h4>
-                  The place we suggest for dinner is <strong><em>{{search.itinerary.nightFood.title}}</em></strong>.  This restaurant has a <strong><em>{{search.itinerary.nightFood.rating}}</em></strong> rating and over <strong><em>{{search.itinerary.nightFood.review}}</em></strong> reviews. The food falls under the category of <strong><em>{{search.itinerary.nightFood.categories[0][0]}}</em></strong> and the price averages about <strong><em>${{search.itinerary.nightFood.price}}</em></strong> dollars.
-                </div>
-                <a class="media-right" href="#">
-                  <img class="media-object media-img img-circle" src="{{search.itinerary.nightActivity.url}}" alt="Generic placeholder image">
-                </a>
-                <div class="media-body">
-                  <h4 class="media-heading">If you're still not tired by now, you should checkout</h4>
-                  <strong><em>{{search.itinerary.nightActivity.title}}</em></strong>  Average cost is around <strong><em>${{search.itinerary.nightActivity.price}}.00 dollars.</em></strong>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+        <itinerary></itinerary>
       </div>
     </div>
   </div>

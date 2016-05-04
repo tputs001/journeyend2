@@ -66,7 +66,6 @@ app.get('/restaurant/:query', function(req, res){
   var term = "restaurants"
     var results = yelp.yelpSearch(term, location)
     results.then(function(data){
-      console.log(data)
       var activityArray = insert(data, location, "restaurants", res)
       getData(location, res, term, activityArray)
     })

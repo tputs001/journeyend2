@@ -10,7 +10,7 @@ function search($scope, $http, $location){
   var allResults = function(query){
     var allSearch = getResults(query)
     allSearch.then(function(response){
-      budgetFilter(response.data.tours)
+      vm.filteredActivities = response.data.tours
     })
   }
 
@@ -23,7 +23,7 @@ function search($scope, $http, $location){
   }
 
   var budgetFilter = function(data){
-    vm.filteredActivities = _.filter(data, function(num){return num.price < queryString.b || num.price == 'Not Available'})
+    vm.filteredActivities = response.data
   }
 
   vm.hikes = function(query){
@@ -32,7 +32,7 @@ function search($scope, $http, $location){
       url: './hikes/' + query
     })
     querySearch.then(function(response){
-    budgetFilter(response.data)
+    vm.filteredActivities = response.data
     })
   }
 
@@ -42,7 +42,7 @@ function search($scope, $http, $location){
       url: './restaurant/' + query
     })
     querySearch.then(function(response){
-      budgetFilter(response.data)
+      vm.filteredActivities = response.data
     })
   }
 
@@ -52,7 +52,7 @@ function search($scope, $http, $location){
       url: './museums/' + query
     })
     querySearch.then(function(response){
-      budgetFilter(response.data)
+      vm.filteredActivities = response.data
     })
   }
 
@@ -62,7 +62,7 @@ function search($scope, $http, $location){
       url: './nightlife/' + query
     })
     querySearch.then(function(response){
-      budgetFilter(response.data)
+      vm.filteredActivities = response.data
     })
   }
 
