@@ -42,6 +42,7 @@ app.get('/search/:query', function(req, res){
             tours : titleArray
           }, function(error, results){
             res.send(titleArray)
+            populateData(location)
           })
         })
       } else {
@@ -50,6 +51,39 @@ app.get('/search/:query', function(req, res){
     })
   })
 })
+
+function populateData(area){
+  myClient.connect(url, function(err, db){
+    var database = db.collection('activities')
+    database.findOne({location: area}, function(error, results){
+      var activities = ['hiking', 'restaurants', 'nightlife', 'museums']
+      for(var i = 0; i<activities.length; i++){
+        if(results[activities[i]] == undefined || results[activities[i]] == null){
+          var yelpSearch = yelp.yelpSearch(activities[i], area)
+          console.log(activities[i])
+          yelpSearch.then(function(data, error){
+            console.log(activities[i])
+            var yelpData = insert(data, area, activities[i])
+            var setObject = {}
+            setObject[activities[i]] = yelpData
+
+            database.update(
+              {location : area},
+              { $set:
+                setObject
+              }, function(error, results){
+                db.close()
+              }
+            )
+          })
+        } else {
+          console.log("Already in the database.")
+          db.close()
+        }
+      }
+    })
+  })
+}
 
 app.get('/hikes/:query/', function(req, res){
   var term = "hiking"
@@ -101,7 +135,7 @@ app.get('/itinerary/:query', function(req, res){
   })
 })
 
-function insert(data, location, activity, res){
+function insert(data, location, activity){
   var activityArray = []
   for(var i = 0; i<data.businesses.length; i++){
     var img_url = data.businesses[i].image_url

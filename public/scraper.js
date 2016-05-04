@@ -14,7 +14,7 @@ function scrape(url, location, name, activity){
     $$$$ : 75
   }
   request(yelp, function(error, response, body) {
-     if(response.statusCode === 200) {
+    //  if(response.statusCode === 200) {
        var $ = cheerio.load(body)
        var yelpPrice;
        var getElement = ($('.price-category > .bullet-after > span').text()).trim()
@@ -25,9 +25,11 @@ function scrape(url, location, name, activity){
          var objectPrice = {}
          objectName[activity + '.title'] = name
          objectPrice[activity + '.$.price'] = yelpPrice
-        database.update(objectName, {$set: objectPrice})
+        database.update(objectName, {$set: objectPrice}, function(error, results){
+          db.close();
+        })
        })
-     }
+    //  }
   });
 }
 module.exports.scrape = scrape
