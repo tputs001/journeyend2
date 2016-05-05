@@ -13,8 +13,8 @@ app.use(express.static('./public'))
 app.get('/search/:query', function(req, res){
   var location = req.params.query
   myClient.connect(url, function(err, db){
-    var data = db.collection('activities')
-    data.findOne({'location' : location}, function(err, results){
+    var database = db.collection('activities')
+    database.findOne({'location' : location}, function(err, results){
       if(results == null){
         request({
           url: 'http://terminal2.expedia.com/x/activities/search',
@@ -37,12 +37,12 @@ app.get('/search/:query', function(req, res){
               latlng : bodyParsed.activities[i].latLng
             })
           }
-          data.insert({
+          database.insert({
             location : location,
             tours : titleArray
           }, function(error, results){
             res.send(titleArray)
-            populateData(location)
+            populateData(location, database, db)
           })
         })
       } else {
@@ -52,77 +52,37 @@ app.get('/search/:query', function(req, res){
   })
 })
 
-function populateData(area){
-  myClient.connect(url, function(err, db){
-    var database = db.collection('activities')
-    database.findOne({location: area}, function(error, results){
-      var activities = ['hiking', 'restaurants', 'nightlife', 'museums']
-      for(var i = 0; i<activities.length; i++){
-        if(results[activities[i]] == undefined || results[activities[i]] == null){
-          var yelpSearch = yelp.yelpSearch(activities[i], area)
-          console.log(activities[i])
-          yelpSearch.then(function(data, error){
-            console.log(activities[i])
-            var yelpData = insert(data, area, activities[i])
-            var setObject = {}
-            setObject[activities[i]] = yelpData
-
-            database.update(
-              {location : area},
-              { $set:
-                setObject
-              }, function(error, results){
-                db.close()
-              }
-            )
-          })
-        } else {
-          console.log("Already in the database.")
-          db.close()
-        }
-      }
-    })
+function populateData(location, database, db){
+  database.findOne({'location': location}, function(error, results){
+    var activities = ['hiking', 'restaurants', 'nightlife', 'museums']
+    for(var i = 0; i<activities.length; i++){
+     yelp.yelpSearch(activities[i], location, database, db)
+    }
   })
 }
 
 app.get('/hikes/:query/', function(req, res){
   var term = "hiking"
   var location = req.params.query
-  var results = yelp.yelpSearch(term, location)
-  results.then(function(data){
-    var activityArray = insert(data, location, "hiking", res)
-    getData(location, res, term, activityArray)
-  })
+  grabData(location, res, term)
 })
 
 app.get('/restaurant/:query', function(req, res){
   var location = req.params.query
   var term = "restaurants"
-    var results = yelp.yelpSearch(term, location)
-    results.then(function(data){
-      var activityArray = insert(data, location, "restaurants", res)
-      getData(location, res, term, activityArray)
-    })
+  grabData(location, res, term)
 })
 
 app.get('/nightlife/:query', function(req, res){
   var location = req.params.query
   var term = "nightlife"
-  var results = yelp.yelpSearch(term, location)
-  results.then(function(data){
-    var activityArray = insert(data, location, "nightlife", res)
-    getData(location, res, term, activityArray)
-  })
+  grabData(location, res, term)
 })
 
 app.get('/museums/:query', function(req, res){
   var location = req.params.query
   var term = "museums"
-  var results = yelp.yelpSearch(term, location)
-  results.then(function(data){
-    var activityArray = insert(data, location, "museums", res)
-    getData(location, res, term, activityArray)
-  })
+  grabData(location, res, term)
 })
 
 app.get('/itinerary/:query', function(req, res){
@@ -131,51 +91,18 @@ app.get('/itinerary/:query', function(req, res){
     var database = db.collection('activities')
     database.findOne({location: location}, function(error, results){
       res.send(results)
+      db.close()
     })
   })
 })
 
-function insert(data, location, activity){
-  var activityArray = []
-  for(var i = 0; i<data.businesses.length; i++){
-    var img_url = data.businesses[i].image_url
-    var newUrl;
-    img_url == undefined ? newUrl = "Not Available" : newUrl = img_url.slice(0, img_url.indexOf('/ms')) + '/o.jpg'
-    activityArray.push({
-      title : data.businesses[i].name,
-      id : data.businesses[i].id,
-      url : newUrl,
-      price : scraper.scrape(data.businesses[i].url, location, data.businesses[i].name, activity),
-      categories : data.businesses[i].categories,
-      latlng : data.businesses[i].location.cordinate,
-      location : data.businesses[i].location,
-      rating : data.businesses[i].rating,
-      review: data.businesses[i].review_count,
-      snippet: data.businesses[i].snippet_text,
-      phone : data.businesses[i].phone
-    })
-  }
-  return activityArray;
-}
 
-function getData(location, res, terms, activityArray){
+function grabData(location, res, term){
   myClient.connect(url, function(err, db){
     var database = db.collection('activities')
-    database.findOne({location: location}, function(error, results){
-      var setObject = {}
-      setObject[terms] = activityArray
-      if(results[terms] == undefined || results[terms] == null){
-        database.update(
-          {'location' : location},
-          { $set:
-            setObject
-          }, function(error, results){
-            res.send(activityArray)
-          }
-        )
-      } else {
-        res.send(results[terms])
-      }
+    database.findOne({location: location}, function(err, results){
+      res.send(results[term])
+      db.close()
     })
   })
 }
