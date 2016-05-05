@@ -1,6 +1,6 @@
 <div ng-show="start">
   <div class="row">
-    <div class="col-md-7 col-md-offset-1">
+    <div class="col-md-6 col-md-offset-1">
       <h4 class="text-center"> Morning </h4>
       <hr>
       <div class="media">
@@ -9,7 +9,7 @@
         </a>
         <div class="media-body">
           <h4 class="media-heading">Let's start...</h4>
-          Lets start the day by heading over for some grub at <strong><em>{{search.itinerary.morningFood.title}}</em></strong>.  This restaurant has a <strong><em>{{search.itinerary.morningFood.rating}}</em></strong> rating and over <strong><em>{{search.itinerary.morningFood.review}}</em></strong> reviews. The food falls under the category of <strong><em>{{search.itinerary.morningFood.categories[0][0]}}</em></strong> and the price averages about <strong><em>${{search.itinerary.morningFood.price}}</em></strong> dollars.
+          Lets start the day by heading over for some grub at <strong><em>{{search.itinerary.morningFood.title}}</em></strong>. This restaurant has a <strong><em>{{search.itinerary.morningFood.rating}}</em></strong> rating and over <strong><em>{{search.itinerary.morningFood.review}}</em></strong> reviews. The food falls under the category of <strong><em>{{search.itinerary.morningFood.categories[0][0]}}</em></strong> and the price averages about <strong><em>${{search.itinerary.morningFood.price}}</em></strong> dollars.
         </div>
       </div>
       <div class="media">
@@ -65,8 +65,37 @@
       </div>
     </div>
     <div class="col-md-4">
-      <h4 class="text-center"> Details </h4>
+      <h4 class="text-center"> Summary </h4>
       <hr>
+      <div class="panel panel-default">
+        <div class="panel-body" ng-init="initMap()">
+          <div id="summary">
+            <h4>Morning</h4>
+            <ol>
+              <li>{{search.itinerary.morningFood.title}}: ${{search.itinerary.morningFood.price}}.00</li>
+              <li>{{search.itinerary.morningActivity.title}}: $0.00</li>
+            </ol>
+            <hr>
+            <h4>Evening</h4>
+            <ol>
+              <li>{{search.itinerary.eveningFood.title}}: ${{search.itinerary.eveningFood.price}}.00</li>
+              <ul>
+                <li>{{search.itinerary.eveningActivity[0].title}} ${{search.itinerary.eveningActivity[0].price}}.00</li>
+                <li>{{search.itinerary.eveningActivity[1].title}} ${{search.itinerary.eveningActivity[1].price}}.00</li>
+                <li>{{search.itinerary.eveningActivity[2].title}} ${{search.itinerary.eveningActivity[2].price}}.00</li>
+              </ul>
+            </ol>
+            <hr>
+            <h4>Night</h4>
+            <ol>
+              <li>{{search.itinerary.nightFood.title}}: ${{search.itinerary.nightFood.price}}.00</li>
+              <li>{{search.itinerary.nightActivity.title}}: ${{search.itinerary.nightActivity.price}}.00</li>
+            </ol>
+            <hr>
+              <strong>Total Cost: </strong>${{search.itinerary.morningFood.price + search.itinerary.eveningFood.price + search.itinerary.nightFood.price + search.itinerary.nightActivity.price}}.00 (Not including your evening activity choice!)
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>

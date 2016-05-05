@@ -80,7 +80,7 @@ function search($scope, $http, $location){
         eveningFood: response.data.restaurants[random + 1],
         eveningActivity: [response.data.tours[random + 1], response.data.tours[random + 2], response.data.tours[random + 3]],
         nightFood: response.data.restaurants[random + 2],
-        nightActivity: response.data.nightlife[random + 2]
+        nightActivity: response.data.nightlife[random + 2],
       }
       vm.itinerary = itineraryObject
     })

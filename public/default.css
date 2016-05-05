@@ -54,3 +54,8 @@ body {
   width: 100px;
   height: 100px;
 }
+
+#summary {
+  /*width: 600px;*/
+  height: 400px;
+}
