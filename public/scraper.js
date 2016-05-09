@@ -14,7 +14,9 @@ function scrape(url, location, name, activity, database, db){
   if(activity == "hiking" || activity == "museums"){
     return "Not Available";
   }
-  request(yelp, function(error, response, body) {
+
+  var trimUrl = yelp.slice(0, yelp.indexOf("?"))
+  request(trimUrl, function(error, response, body) {
      if(response.statusCode === 200) {
        var $ = cheerio.load(body)
        var yelpPrice;

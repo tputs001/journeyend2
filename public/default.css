@@ -2,60 +2,63 @@ body {
   min-height: 750px;
 }
 
-.imageResult {
-  width: 252px;
-  height: 150px;
-}
-
-.results {
-  height: 300px;
-}
-
-.results-body {
-  height: 130px;
-}
-
 .hero-header {
   background-image: url('./img/bg3.jpg');
   background-repeat: no-repeat;
   background-size: 100% 100%;
   min-height: 750px;
-  padding: 7em;
-  /*color: #fff;*/
+  padding: 4em 7em 7em 7em;
 }
 
-.nav > li > a {
-  font-family: Arial;
-  font-size: 18px;
-  color: white;
-}
-
-.search {
+#search {
   box-shadow: 0 0 30px black;
   height: 400px;
   padding: 22px;
 }
 
-.search > div > h3 {
-  font-family: Arial;
+#filter {
+  box-shadow: -30 0 0px black;
 }
 
-#search-title  > h3{
+#filter  > h3{
   display: inline;
+  padding-right: 250px;
 }
 
 
-#search-title > a {
+#filter > a {
   float:right;
   cursor: pointer;
 }
 
-.media-img {
+#filter > button {
+  margin-left: 5px;
+}
+
+.itinerary-img {
   width: 100px;
   height: 100px;
 }
 
 #summary {
-  /*width: 600px;*/
-  height: 400px;
+  height: 600px;
+}
+
+#itinerary-container {
+  overflow: auto;
+  height: 600px;
+}
+
+#results-container {
+  overflow: auto;
+  height: 600px;
+}
+
+.results-image {
+  width: 252px;
+  height: 150px;
+}
+
+.results-body {
+  height: 130px;
 }

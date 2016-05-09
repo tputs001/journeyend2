@@ -1,33 +1,21 @@
-    <header role="banner">
-      <div class="container-fluid">
-        <div class="row hero-header">
-          <div id="navi">
-            <ul class="nav navbar-nav">
-              <!-- <li><a href="#">About</a></li>
-              <li><a href="#">Explore</a></li> -->
-            </ul>
+<div class="col-md-4 col-md-offset-7">
+  <div class="panel panel-default" id="search">
+    <div class="panel-body">
+      <h3 class="text-center"> Shall we suggest something?</h3>
+      <hr>
+      <div ng-controller = "navigationController as navigation">
+        <form ng-controller="searchController as search">
+          <div class="form-group text-center">
+            <label>What's the location?</label>
+            <input ng-model="navigation.term" type="text" class="form-control text-center" placeholder="Los Angeles">
           </div>
-          <div class="col-md-4 col-md-offset-7">
-            <div class="panel panel-default search">
-              <div class="panel-body">
-                <h3 class="text-center"> Shall we suggest something?</h3>
-                <hr>
-                <div ng-controller = "navigationController as navigation">
-                  <form ng-controller="searchController as search">
-                    <div class="form-group text-center">
-                      <label>What's the location?</label>
-                      <input ng-model="navigation.term" type="text" class="form-control text-center" placeholder="Los Angeles">
-                    </div>
-                    <div class="form-group text-center">
-                      <label>What's your budget?</label>
-                      <input ng-model="navigation.budget" type="text" class="form-control text-center" placeholder="$100">
-                    </div>
-                    <a href="/#/search?q={{navigation.term}}&b={{navigation.budget}}"><button type="button" class="btn btn-success center-block">Search</button></a>
-                  </form>
-                </div>
-              </div>
-            </div>
+          <div class="form-group text-center">
+            <label>What's your budget?</label>
+            <input ng-model="navigation.budget" type="text" class="form-control text-center" placeholder="$100">
           </div>
-        </div>
+          <a href="/#/search?q={{navigation.term}}&b={{navigation.budget}}"><button type="button" class="btn btn-success center-block">Search</button></a>
+        </form>
       </div>
-    </header>
+    </div>
+  </div>
+</div>
