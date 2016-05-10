@@ -25,6 +25,11 @@ body {
   padding-right: 250px;
 }
 
+#filter > button > img{
+  width: 32px;
+  height: 32px;
+}
+
 
 #filter > a {
   float:right;

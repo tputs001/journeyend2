@@ -4,10 +4,10 @@
       <div class="panel panel-default">
         <div id="filter" class="panel-heading">
           <h3 class="panel-title">{{start == false ? 'Search Results' : 'Our Suggestion'}} | </h3>
-            <button class="btn btn-default btn-sm" ng-click="search.hikes(query)">Hiking</button>
-            <button class="btn btn-default btn-sm" ng-click="search.restaurant(query)">Restaurants</button>
-            <button class="btn btn-default btn-sm" ng-click="search.museums(query)">Museums</button>
-            <button class="btn btn-default btn-sm" ng-click="search.nightlife(query)">Night Life</button>
+            <button class="btn btn-default btn-sm" ng-click="search.hikes(query)"><img class="img-responsive center-block" src="./img/hiking.png">Hiking</button>
+            <button class="btn btn-default btn-sm" ng-click="search.restaurant(query)"><img class="img-responsive center-block" src="./img/restaurants.png">Restaurants</button>
+            <button class="btn btn-default btn-sm" ng-click="search.museums(query)"><img class="img-responsive center-block" src="./img/museum.png">Museums</button>
+            <button class="btn btn-default btn-sm" ng-click="search.nightlife(query)"><img class="img-responsive center-block" src="./img/beer.png">Night Life</button>
           <a ng-click="start = !start; search.itinerary(query)"> Suggest a daily itinerary </a>
         </div>
         <div ng-show="!start" id="results-container">

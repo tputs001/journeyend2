@@ -35,6 +35,10 @@ app.get('/search/:query', function(req, res){
               price : cost,
               categories : bodyParsed.activities[i].categories,
               location : "Not Available",
+              review : "Not Available",
+              rating : "Not Available",
+              phone : "Not Available",
+              snippet : "Not Availble",
               type: "tours",
               latlng : bodyParsed.activities[i].latLng
             })
