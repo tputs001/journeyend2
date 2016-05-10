@@ -34,6 +34,7 @@ app.get('/search/:query', function(req, res){
               url : bodyParsed.activities[i].imageUrl,
               price : cost,
               categories : bodyParsed.activities[i].categories,
+              location : "Not Available",
               type: "tours",
               latlng : bodyParsed.activities[i].latLng
             })

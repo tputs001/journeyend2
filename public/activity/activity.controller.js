@@ -15,7 +15,6 @@ function activity($scope, $http, $location){
   })
 
   function grabActivity(collection, type, name){
-    console.log(name)
     for(var i = 0; i<collection[type].length; i++){
       if(collection[type][i].title == name){
         console.log(collection[type][i])

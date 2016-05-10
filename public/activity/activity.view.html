@@ -3,7 +3,35 @@
     <div class="col-md-12">
       <div class="panel panel-default">
         <div class="panel-body">
-          {{activity.filteredActivities.title}}
+          <h3>{{activity.filteredActivities.title}}</h3>
+          <hr>
+          <div class="col-md-4">
+            <img class="img-responsive" src = {{activity.filteredActivities.url}}>
+          </div>
+          <div class="col-md-8">
+            <strong>Price:</strong> ${{activity.filteredActivities.price}}.00
+            <br>
+            <strong>Categories:</strong>
+            <span ng-repeat="item in activity.filteredActivities.categories">
+            |  {{item}} |
+            </span>
+            <br>
+            <strong>Reviews:</strong> <span> {{activity.filteredActivities.review}}</span>
+            <br>
+            <strong>Ratings:</strong> <span> {{activity.filteredActivities.rating}}</span>
+            <hr>
+            <strong>Address:</strong>
+            <span ng-repeat="item in activity.filteredActivities.location.display_address">
+               <div>{{item}}</div>
+            </span>
+            <br>
+            <strong>Phone:</strong> {{activity.filteredActivities.phone}}
+            <hr>
+            <strong>Comments:</strong>
+            <blockquote>
+              {{activity.filteredActivities.snippet}}
+            <blockquote>
+          </div>
         </div>
       </div>
     </div>
