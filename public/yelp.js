@@ -25,7 +25,8 @@ function createData(data, location, activity, database, db){
       rating : data.businesses[i].rating,
       review: data.businesses[i].review_count,
       snippet: data.businesses[i].snippet_text,
-      phone : data.businesses[i].phone
+      phone : data.businesses[i].phone,
+      type : activity
     })
   }
   return activityArray;

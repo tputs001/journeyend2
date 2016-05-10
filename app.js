@@ -34,6 +34,7 @@ app.get('/search/:query', function(req, res){
               url : bodyParsed.activities[i].imageUrl,
               price : cost,
               categories : bodyParsed.activities[i].categories,
+              type: "tours",
               latlng : bodyParsed.activities[i].latLng
             })
           }
@@ -87,6 +88,17 @@ app.get('/museums/:query', function(req, res){
 
 app.get('/itinerary/:query', function(req, res){
   var location = req.params.query
+  myClient.connect(url, function(err, db){
+    var database = db.collection('activities')
+    database.findOne({location: location}, function(error, results){
+      res.send(results)
+      db.close()
+    })
+  })
+})
+
+app.get('/activity/:location/', function(req, res){
+  var location = req.params.location
   myClient.connect(url, function(err, db){
     var database = db.collection('activities')
     database.findOne({location: location}, function(error, results){

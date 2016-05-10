@@ -13,17 +13,19 @@
         <div ng-show="!start" id="results-container">
           <div ng-repeat="item in search.filteredActivities">
             <div class="col-md-3">
-              <div class="panel panel-default">
-                <div class="panel">
-                  <img class="img-responsive results-image" src={{item.url}}>
+              <a href = "/#/activity?q={{query}}&n={{item.title}}&type={{item.type}}">
+                <div class="panel panel-default">
+                  <div class="panel">
+                    <img class="img-responsive results-image" src={{item.url}}>
+                  </div>
+                  <div class="panel-body results-body">
+                    <h5>{{item.title}}</h5>
+                    Avg Price : {{item.price == 'Not Available' ? item.price : '$' + item.price + '.00'}}
+                    <br>
+                    ID : {{item.id}}
+                  </div>
                 </div>
-                <div class="panel-body results-body">
-                  <h5>{{item.title}}</h5>
-                  Avg Price : {{item.price == 'Not Available' ? item.price : '$' + item.price + '.00'}}
-                  <br>
-                  ID : {{item.id}}
-                </div>
-              </div>
+              </a>
             </div>
           </div>
         </div>

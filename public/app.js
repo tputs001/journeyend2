@@ -10,6 +10,11 @@ app.config(['$routeProvider', function($routeProvider){
     controller: "searchController",
     controllerAs: "search"
   })
+  .when("/activity/", {
+    templateUrl: "activity/activity.view.html",
+    controller: "activityController",
+    controllerAs: "activity"
+  })
 }]);
 
 app.controller('navigationController', navigation);
