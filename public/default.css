@@ -40,6 +40,10 @@ body {
   margin-left: 5px;
 }
 
+#suggest {
+  float: right;
+}
+
 .itinerary-img {
   width: 100px;
   height: 100px;
@@ -57,10 +61,6 @@ body {
 #results-container {
   overflow: auto;
   height: 600px;
-}
-
-#test {
-  cursor: pointer;
 }
 
 .results-image {
