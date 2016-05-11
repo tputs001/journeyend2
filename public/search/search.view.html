@@ -13,7 +13,7 @@
         <div ng-show="!start" id="results-container">
           <div ng-repeat="item in search.filteredActivities | filter:budget ">
             <div class="col-md-3">
-              <a href = "/#/activity?q={{query}}&n={{item.title}}&type={{item.type}}">
+              <a href = "/#/activity?q={{query}}&n={{item.title}}&b={{budgetAmt}}&type={{item.type}}">
                 <div class="panel panel-default">
                   <div class="panel">
                     <img class="img-responsive results-image" src={{item.url}}>

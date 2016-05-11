@@ -4,11 +4,11 @@ app.$inject = ['$http', '$location'];
 function search($scope, $http, $location){
   var vm = this;
   var queryString = ($location.search())
-  var budgetAmt = queryString.b
   $scope.query = queryString.q
+  $scope.budgetAmt = queryString.b
 
   $scope.budget = function (item) {
-    if (item.price < budgetAmt || item.price == "Not Available") {
+    if (item.price < queryString.b || item.price == "Not Available") {
       return item;
   }
 };

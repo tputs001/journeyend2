@@ -5,6 +5,7 @@ function activity($scope, $http, $location){
   var vm = this;
   var queryString = ($location.search())
   $scope.query = queryString.q
+  $scope.budget = queryString.b
   var querySearch = $http({
     method: "GET",
     url: "./activity/" + queryString.q +  "/"
