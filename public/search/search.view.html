@@ -11,7 +11,7 @@
           <button id="suggest" class="btn btn-default btn-sm" ng-click="start = !start; search.itinerary(query)"> Suggest a daily itinerary </button>
         </div>
         <div ng-show="!start" id="results-container">
-          <div ng-repeat="item in search.filteredActivities">
+          <div ng-repeat="item in search.filteredActivities | filter:budget ">
             <div class="col-md-3">
               <a href = "/#/activity?q={{query}}&n={{item.title}}&type={{item.type}}">
                 <div class="panel panel-default">

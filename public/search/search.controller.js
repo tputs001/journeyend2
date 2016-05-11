@@ -4,8 +4,14 @@ app.$inject = ['$http', '$location'];
 function search($scope, $http, $location){
   var vm = this;
   var queryString = ($location.search())
+  var budgetAmt = queryString.b
   $scope.query = queryString.q
-  vm.filteredActivities;
+
+  $scope.budget = function (item) {
+    if (item.price < budgetAmt || item.price == "Not Available") {
+      return item;
+  }
+};
 
   var allResults = function(query){
     var allSearch = getResults(query)
@@ -20,10 +26,6 @@ function search($scope, $http, $location){
       url: './search/' + query
     })
     return querySearch
-  }
-
-  var budgetFilter = function(data){
-    vm.filteredActivities = response.data
   }
 
   vm.hikes = function(query){
@@ -85,20 +87,5 @@ function search($scope, $http, $location){
       vm.itinerary = itineraryObject
     })
   }
-
-  vm.filter = function(query, amt){
-    var filtered = getResults(query)
-    filtered.then(function(response){
-      var filterData = response.data.activities
-      var filteredArray = [];
-      for(var i = 0; i < filterData.length; i++){
-        if(filterData[i].price !== undefined && filterData[i].price < amt){
-          filteredArray.push(filterData[i])
-        }
-      }
-      vm.filteredActivities = _.sortBy(filteredArray, 'price')
-    })
-  }
-
   allResults(queryString.q)
 }
